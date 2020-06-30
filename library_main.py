@@ -140,12 +140,12 @@ class MyWindow(PySide2.QtWidgets.QWidget, ui_test2.Ui_Form):
     def parse(database_path):
         new_path = database_path.split('/')
         database_file_name = './' + new_path[-1]
-        # print(f' database_file_name {database_file_name}')
+
         return database_file_name
 
     def update_list_tables(self, data_base):
         data_for_list_of_table = qt_data_base.MyDataBase.get_inform_from_db(data_base)
-        # print(f'data_for_list_of_table {data_for_list_of_table}')
+
         self.pushButton_2.clicked.connect(self.text_view)
         self.pushButton_3.clicked.connect(self.table_view)
         self.listWidget.clear()
@@ -155,7 +155,6 @@ class MyWindow(PySide2.QtWidgets.QWidget, ui_test2.Ui_Form):
                 self.counter += 1
                 self.new_data.append(j)
 
-        # print(f'self.listWidget {self.listWidget}')
         return self.new_data
 
     def output(self):
@@ -176,18 +175,16 @@ class MyWindow(PySide2.QtWidgets.QWidget, ui_test2.Ui_Form):
             for i in self.table:
                 self.table = i
                 self.table = self.table.text()
-            # print(f' self.table {self.table}')
-            # print(f' type self.table {type(self.table)}')
+
         except TypeError:
             pass
 
         if type(self.table) is tuple:
             self.table = str(self.table[0])
-            # print(f' self.table {self.table}')
+
         self.data = qt_data_base.MyDataBase.sqlite3_simple_read_db(self.data_base, self.table)
         self.new_data = self.data[0]
-        # print(f' self.data {self.data}')
-        # print(f' self.new_data {self.new_data}')
+
         for i in self.new_data:
             self.comboBox.addItem(i)
         full_str = ""
@@ -214,7 +211,6 @@ class MyWindow(PySide2.QtWidgets.QWidget, ui_test2.Ui_Form):
         self.textEdit.setParent(self.layoutWidget1)
         self.verticalLayout_3.addWidget(self.textEdit)
         self.tableEdit.setParent(None)
-        # print(f' parent {self.tableEdit.parent()}')
         self.output()
 
     def table_view(self):
@@ -244,7 +240,6 @@ class MyWindow(PySide2.QtWidgets.QWidget, ui_test2.Ui_Form):
         self.result = self.get_result_from_db()
         if self.result != 'Значение не найдено в базе данных!':
             data = ''
-            # print(self.result)
             for i in self.result:
                 for j in i:
                     data += str(j)
@@ -335,9 +330,7 @@ class AddBook(QtWidgets.QWidget):
         remember_table = window.table
         self.enters_data.clear()
         self.enters_data = self.record
-        print(f' enters data 1{self.enters_data}')
-        # print(f' window.table 2{window.table}')
-        # print(f' window.data_base 3{window.data_base}')
+
         if len(self.enters_data) > 1:
             qt_data_base.MyDataBase.add_record_table(self.enters_data, window.data_base, window.table)
 
