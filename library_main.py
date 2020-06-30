@@ -806,14 +806,82 @@ class Help(QtWidgets.QWidget):
         self.main_layout.addLayout(self.v1_layout)
         self.main_layout.addLayout(self.v2_layout)
         self.v1_layout.addWidget(self.main_win_button)
+        self.main_win_button.clicked.connect(self.main)
+
         self.v1_layout.addWidget(self.add_db_table)
+        self.add_db_table.clicked.connect(self.add_db)
+
         self.v1_layout.addWidget(self.add_string_button)
+        self.add_string_button.clicked.connect(self.add_string)
+
         self.v1_layout.addWidget(self.load_file_button)
+        self.load_file_button.clicked.connect(self.load_file)
+
         self.v1_layout.addWidget(self.del_string_button)
+        self.del_string_button.clicked.connect(self.del_string)
+
         self.v1_layout.addWidget(self.download_file_button)
+        self.download_file_button.clicked.connect(self.download_file)
+
         self.v1_layout.addWidget(self.update_string_button)
+        self.update_string_button.clicked.connect(self.update_string)
+
         self.v2_layout.addWidget(self.fram)
         self.v2_layout.addWidget(self.text)
+
+    def main(self):
+        self.text.clear()
+        help_text = 'Чтобы воспользоваться функциями "добавить книгу", "удалить книгу", "выгрузить" и ' \
+                    '"обновить книгу" предварительно необходимо загрузить базу данных и таблицу. На главном ' \
+                    'экране можно пользоваться поиском по таблице, загружать таблицу в виде текста или в табличном виде'
+
+        self.text.setText(help_text)
+
+    def add_db(self):
+        self.text.clear()
+        help_text = 'Чтобы добавить новую базу данных или таблицу нажмите "добавить новую базу данных" и ' \
+                    'следуйте инструкциям. В этом же разделе можно удалить файл базы данных'
+
+        self.text.setText(help_text)
+
+    def add_string(self):
+        self.text.clear()
+        help_text = 'Чтобы добавить книгу необходимо предварительно загрузить таблицу. Затем нажмите на ' \
+                    'главном экране кнопку "добавить книгу", введите значения в соответствующие поля вашей ' \
+                    'таблицы и нажмите ввод'
+
+        self.text.setText(help_text)
+
+    def load_file(self):
+        self.text.clear()
+        help_text = 'Чтобы загрузить существующий файл базы данных нажмите на главном экране кнопку "загрузить" ' \
+                    'и выберите файл с раширением .db'
+
+        self.text.setText(help_text)
+
+    def del_string(self):
+        self.text.clear()
+        help_text = 'Чтобы удалить книгу необходимо предварительно загрузить таблицу. Затем нажмите на ' \
+                    'главном экране кнопку "удалить книгу", выберите параметры поиска, найдите нужную книгу, ' \
+                    'и нажмите удалить'
+
+        self.text.setText(help_text)
+
+    def download_file(self):
+        self.text.clear()
+        help_text = 'Чтобы сохранить информацию с главного экрана нажмите выгрузить. ' \
+                    'Выгрузка доступна в форматах .txt и .json'
+
+        self.text.setText(help_text)
+
+    def update_string(self):
+        self.text.clear()
+        help_text = 'Чтобы отредактировать (обновить) книгу необходимо предварительно загрузить таблицу. ' \
+                    'Затем нажмите на главном экране кнопку "обновить книгу", выберите параметры поиска, ' \
+                    'найдите нужную книгу, введите новые значения прямо в окне вместо существующих и ' \
+                    'нажмите редактировать'
+
+        self.text.setText(help_text)
 
 
 if __name__ == "__main__":
